@@ -68,5 +68,14 @@ context란 문맥으로 운영체제의 context는 프로세스 서버측에서�
 	UserVo authUser = (userVo)session.getAttribute("authUser");
 ```
 jsp에는 HttpSession session객체가 이미 생성되어있음
+***
+
+-jsp는 data를 받아 화면에 뿌려준다.(렌더링)
+-RequestDispach : 요청별로 view(jsp)를 분리
+-foword : view로 요청을 연장시키는것 (client->conroller->view)
+-절대경로 : / 로 시작한다, 상대경로 비추
+-get은 데이터가 header에 post는 데이터가 body에
+-post방식은 encoding을 해줘야한다.
+-project이름을 변경할 때는 search->file search 로 기존 플젝이름을 검색후 모조리 변경 
 
 
