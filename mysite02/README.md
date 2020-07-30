@@ -77,5 +77,6 @@ jsp에는 HttpSession session객체가 이미 생성되어있음
 -get은 데이터가 header에 post는 데이터가 body에
 -post방식은 encoding을 해줘야한다.
 -project이름을 변경할 때는 search->file search 로 기존 플젝이름을 검색후 모조리 변경 
-
+-에자일 : 짧게 설계~테스트(마일스스톤, 이터레이션)를 반복하여 완성하는 방식
+-사용자 스토리를 잘짜야한다.
 
