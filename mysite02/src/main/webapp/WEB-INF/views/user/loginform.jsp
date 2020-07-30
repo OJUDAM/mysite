@@ -23,13 +23,14 @@
 					<label class="block-label" >패스워드</label>
 					<input name="password" type="password" value="">
 					
-					<%String result = (String) request.getAttribute("result");
-			if ("fail".equals(result)) {%>
-					
-					<p>
-						로그인이 실패 했습니다.
-					</p>
-					<%}%>
+					<%
+						String result = (String) request.getAttribute("result");
+						if ("fail".equals(result)) {
+					%>
+					<p>로그인이 실패 했습니다.</p>
+					<%
+						}
+					%>
 					
 					<input type="submit" value="로그인">
 				</form>
