@@ -7,9 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.bit2020.mvc.util.MVCUtil;
+
 import com.bit2020.mysite.repository.GuestbookRepository;
 import com.bit2020.mysite.vo.GuestBookVo;
+import com.bit2020.webutil.MVCUtil;
 
 public class GuestbookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bit2020.mvc.util.MVCUtil;
 import com.bit2020.mysite.repository.UserRepository;
 import com.bit2020.mysite.vo.UserVo;
+import com.bit2020.webutil.MVCUtil;
 
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -70,7 +70,34 @@ public class UserController extends HttpServlet {
 			}
 			/*로그아웃 처리*/
 			MVCUtil.redirect(request.getContextPath(), request, response);
-		} 
+		} else if ("updateform".equals(action)) {
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			UserVo userVo = new UserRepository().findByNo(authUser.getNo());
+			
+			request.setAttribute("userVo", userVo);
+			MVCUtil.forward("user/updateform", request, response);
+		}else if ("update".equals(action)) {
+			String no = request.getParameter("no");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			String gender = request.getParameter("gender");
+			
+			UserVo vo = new UserVo();
+			vo.setNo(Long.parseLong(no));
+			vo.setName(name);
+			vo.setEmail(email);
+			vo.setPassword(password);
+			vo.setGender(gender);
+			
+			new UserRepository().update(vo);
+			HttpSession session = request.getSession(true); // HttpSession 객체를 만들어서 보내줌(true)
+			
+			session.setAttribute("authUser", vo);
+			MVCUtil.redirect("/mysite02/user?a=updatesuccess", request, response);
+			
+		}
 		else {
 			MVCUtil.redirect(request.getContextPath(), request, response);
 		}

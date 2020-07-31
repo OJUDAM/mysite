@@ -118,4 +118,95 @@ public class UserRepository {
 		return result;
 	}
 
+	public UserVo findByNo(long no) {
+		UserVo result = null;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+
+			// 1 연결하기
+			connection = getConnection();
+			String sql = "select no,name,email,gender from user where no= ?";
+
+			pstmt = connection.prepareStatement(sql);
+
+			// 4. 바인딩
+			pstmt.setLong(1, no);
+
+			// 5. sql 실행
+			 rs = pstmt.executeQuery();
+			
+			 //결과 가져오기
+			 if(rs.next()) {
+				 result = new UserVo();
+				 result.setNo(rs.getLong(1));
+				 result.setName(rs.getString(2));
+				 result.setEmail(rs.getString(3));
+				 result.setGender(rs.getString(4));
+			 }
+		} catch (SQLException e) {
+			System.out.println("에러 : " + e);
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+		return result;
+	}
+
+	public boolean update(UserVo vo) {
+		boolean result = false;
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		try {
+			// 1 연결하기
+			connection = getConnection();
+			String sql = "update user set name=?,password=password(?), gender=? where no=? and email=?";
+
+			pstmt = connection.prepareStatement(sql);
+			System.out.println(vo);
+			// 4. 바인딩
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(3, vo.getGender());
+			pstmt.setLong(4, vo.getNo());
+			pstmt.setString(5, vo.getEmail());
+			
+			// 5. sql 실행
+			int count = pstmt.executeUpdate();
+			result = (count == 1);
+		} catch (SQLException e) {
+			System.out.println("Update 에러 : " + e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return result;
+
+	}
+
 }

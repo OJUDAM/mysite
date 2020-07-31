@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bit2020.mvc.util.MVCUtil;
+import com.bit2020.webutil.MVCUtil;
 
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
+		System.out.println("doGet() called...");
 		int visitCount = 0;
 		
 		// 쿠키 읽기
@@ -38,6 +38,28 @@ public class MainController extends HttpServlet {
 			
 		MVCUtil.forward("main/index", request, response);
 		}
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("service()called...");
+		super.service(req, resp);
+	}
+	@Override
+	public void destroy() {
+		System.out.println("destroy() called...");
+		super.destroy();
+	}
+	@Override
+	public void init() throws ServletException {
+		System.out.println("init() called...!!!");
+
+		// 1. 컨테이너 설정 파일(bean 설정)의 
+		//    path를 가져오는 작업
+		
+		// 2 . 컨테이너를 만든다.
+		
+		
+		super.init();
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
