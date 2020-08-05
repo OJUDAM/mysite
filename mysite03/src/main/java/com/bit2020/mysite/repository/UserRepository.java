@@ -19,10 +19,7 @@ import com.bit2020.mysite.vo.UserVo;
 public class UserRepository {
 	@Autowired
 	private SqlSession sqlSession;
-	
-	@Autowired
-	private DataSource dataSource;
-	
+		
 	public boolean save(UserVo vo) {
 		int count = sqlSession.insert("user.save", vo);
 		return count == 1;
@@ -30,16 +27,17 @@ public class UserRepository {
 
 	public UserVo findByEmailAndPassword(UserVo vo) {
 		/*
-		 * Map<String, Object> map = new HashMap<>();
-		   map.put("email", email);
-		   map.put("password", password);
-		*/
+		 * 
+		 *  Map<String, Object> map = new HashMap<>();
+		 *  map.put("email", email);
+		 *  map.put("password", password);
+		 *  
+		 */
 		UserVo result = sqlSession.selectOne("findByEmailAndPassword", vo);
-				return result;
+		return result;
 	}
 
 	public UserVo findByNo(long no) throws UserRepositoryException{
-		
 		return sqlSession.selectOne("user.findByNo",no);
 	}
 

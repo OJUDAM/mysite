@@ -18,12 +18,13 @@ import com.bit2020.mysite.vo.GuestBookVo;
 public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
-	
+
+	/* handler */
 	@RequestMapping("")
-	public String list(Model model) {
-		List<GuestBookVo> list = guestbookService.findAll();
+	public String index(Model model) {
+		List<GuestBookVo> list = guestbookService.getMessageList();
 		model.addAttribute("list",list);
-		return "/guestbook/list";
+		return "guestbook/index";
 	}
 	
 	@RequestMapping(value ="/add", method=RequestMethod.POST)
@@ -36,7 +37,7 @@ public class GuestbookController {
 	@RequestMapping("/delete/{no}")
 	public String delete(Model model,@PathVariable("no")Long no) {
 		model.addAttribute("no",no);
-		return "/guestbook/delete";
+		return "guestbook/delete";
 	}
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
 	public String delete(

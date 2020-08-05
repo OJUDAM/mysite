@@ -8,12 +8,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bit2020.mysite.vo.GuestBookVo;
 
 @Repository
 public class GuestbookRepository {
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
 	public boolean delete(Long no, String password) {
 		boolean result = false;
 		Connection connection = null;
@@ -117,55 +123,7 @@ public class GuestbookRepository {
 	}
 
 	public List<GuestBookVo> findAll() {
-		List<GuestBookVo> result = new ArrayList<>();
-		ResultSet rs = null;
-		Connection connection = null;
-		PreparedStatement stmt = null;
-		try {
-			connection = getConnection();
-
-			// 3. Statement 객체 생성 sql 실행하기 위해서
-			// 4. SQL 실행
-			String sql = "select no, name, date_format(reg_date, '%Y-%m-%d %h:%i:%s'),message from guestbook order by reg_date desc";
-			// String sqlcount = "select count(*) from guestbook";
-
-			stmt = connection.prepareStatement(sql);
-			rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				Long no = rs.getLong(1);
-				String name = rs.getString(2);
-				String regDate = rs.getString(3);
-				String message = rs.getString(4);
-
-				GuestBookVo vo = new GuestBookVo();
-				vo.setNo(no);
-				vo.setName(name);
-				vo.setMessage(message);
-				vo.setRegDate(regDate);
-
-				result.add(vo);
-			}
-			// rs = stmt.executeQuery(sqlcount);
-			// rs.next();
-			// int count = rs.getInt(1);
-			// GuestBookVo.count=count;
-		} catch (SQLException e) {
-			System.out.println("에러 : " + e);
-		} finally {
-			try {
-				if (stmt != null) {
-					stmt.close();
-				}
-				if (connection != null) {
-					connection.close();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return result;
+		return sqlSession.selectList("guestbook.findAll");
 	}
 
 	private Connection getConnection() throws SQLException {

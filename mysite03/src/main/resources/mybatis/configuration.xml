@@ -3,8 +3,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.bit2020.mysite.vo.UserVo" alias="uservo" />
+		<typeAlias type="com.bit2020.mysite.vo.GuestBookVo" alias="guestbookvo" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml"/>
+		<mapper resource="mybatis/mappers/guestbook.xml"/>
 	</mappers>
 </configuration>
