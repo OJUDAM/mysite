@@ -40,10 +40,8 @@ public class GuestbookController {
 		return "guestbook/delete";
 	}
 	@RequestMapping(value="/delete",method=RequestMethod.POST)
-	public String delete(
-			@RequestParam(value="no",required=true,defaultValue="0")Long no,
-			@RequestParam(value="password",required=true,defaultValue="")String password) {
-		guestbookService.deleteFromList(no, password);
+	public String delete(GuestBookVo vo) {
+		guestbookService.deleteFromList(vo);
 		return "redirect:/guestbook/";
 	}
 	

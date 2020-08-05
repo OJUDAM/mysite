@@ -10,5 +10,21 @@
 		order by reg_date desc
 		]]>	
 	</select>
+	
+	<insert id="add" parameterType="guestbookvo">
+		<![CDATA[
+		insert 
+		 into guestbook 
+		values(null,#{name},#{password},now(),#{message})
+		]]>	
+	</insert>
+	
+	<delete id="drop" parameterType="guestbookvo">
+		<![CDATA[
+		delete 
+		  from guestbook 
+		where no = #{no} and password = #{password}
+		]]>
+	</delete>
 
 </mapper>
