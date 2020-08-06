@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bit2020.mysite.security.Auth;
 import com.bit2020.mysite.service.GuestbookService;
 import com.bit2020.mysite.vo.GuestBookVo;
 
@@ -18,7 +18,8 @@ import com.bit2020.mysite.vo.GuestBookVo;
 public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
-
+	
+	//@Auth
 	/* handler */
 	@RequestMapping("")
 	public String index(Model model) {
