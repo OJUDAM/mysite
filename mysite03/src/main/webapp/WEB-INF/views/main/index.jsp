@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,19 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath }/assets/css/main.css"
 	rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+$.ajax({
+	url:"/mysite03/json",
+	type:"get",
+	data: "",
+	dataType:"json",
+	success: function(response){
+		console.log(response.name);
+	}		
+});
+</script>
 </head>
 <body>
 	<div id="container">

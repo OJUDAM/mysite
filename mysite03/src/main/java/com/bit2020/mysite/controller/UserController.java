@@ -1,12 +1,14 @@
 package com.bit2020.mysite.controller;
 
-import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bit2020.mysite.security.Auth;
 import com.bit2020.mysite.security.AuthUser;
@@ -19,6 +21,15 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@ResponseBody
+	@RequestMapping("/emailcheck")
+	public Object emailcheck(String email) {
+		System.out.println(email);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("result", "ok");
+		return map;
+	}
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String join() {
 		

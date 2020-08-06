@@ -12,6 +12,25 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath }/assets/css/user.css"
 	rel="stylesheet" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+$(function(){
+	$("#btn-email").click(function(){
+		let email = $("#email").val();
+		console.log("click!!! !! ! !");
+		
+		$.ajax({
+			url:"/mysite03/user/emailcheck?email="+email,
+			type:"get",
+			data: "",
+			dataType:"json",
+			success: function(response){
+				console.log(response);
+			}		
+		});
+	});	
+});
+</script>
 </head>
 <body>
 	<div id="container">
@@ -22,11 +41,11 @@
 
 				<form id="join-form" name="joinForm" method="post"
 					action="${pageContext.request.contextPath }/user/join">
-					<label class="block-label" for="name">이름</label> <input id="name"
-						name="name" type="text" value=""> <label
+					<label class="block-label" for="name">이름</label>
+					 <input id="name" name="name" type="text" value=""> <label
 						class="block-label" for="email">이메일</label> <input id="email"
-						name="email" type="text" value=""> <input type="button"
-						value="id 중복체크"> <label class="block-label">패스워드</label> <input
+						name="email" type="text" value=""> <input id = "btn-email" type="button"
+						value="이메일확인"> <label class="block-label">패스워드</label> <input
 						name="password" type="password" value="">
 
 					<fieldset>
