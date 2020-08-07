@@ -17,7 +17,16 @@
 		where no= #{no}
 		]]>
 	</select>
-
+	
+	<select id="findByEmail" parameterType="string"
+		resultType="uservo">
+		<![CDATA[
+		select no 
+		  from user 
+		where email= #{email}  
+		]]>
+	</select>
+	
 	<select id="findByEmailAndPassword" parameterType="uservo"
 		resultType="uservo">
 		<![CDATA[
