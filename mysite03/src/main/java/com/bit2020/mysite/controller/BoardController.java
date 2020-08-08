@@ -73,5 +73,12 @@ public class BoardController {
 		return "redirect:/board/view/"+boardVo.getNo();
 	}
 	
+	@Auth
+	@RequestMapping(value="/delete/{no}", method=RequestMethod.GET)
+	public String delete(@PathVariable("no") Long no, @AuthUser UserVo authUser) {
+		boardService.deleteUser(no,authUser.getNo());
+		return "redirect:/board";
+	}
+
 	
 }

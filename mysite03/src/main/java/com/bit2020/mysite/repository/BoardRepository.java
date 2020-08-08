@@ -1,5 +1,6 @@
 package com.bit2020.mysite.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,13 @@ public class BoardRepository {
 
 	public BoardVo findByNo(Long no) {
 		return sqlSession.selectOne("board.findByNo", no);
+	}
+
+	public void delete(Long no, Long userNo) {
+		Map<String, Long> map = new HashMap<>();
+		map.put("no",no);
+		map.put("userNo", userNo);
+		sqlSession.delete("board.delete", map);
 	}
 	
 }

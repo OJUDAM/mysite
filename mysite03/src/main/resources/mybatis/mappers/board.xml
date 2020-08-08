@@ -41,4 +41,11 @@
 		where no = #{no};		
 		]]>
 	</select>
+	<delete id="delete" parameterType="Map">
+		<![CDATA[
+		delete 
+  		  from board
+  		where no=#{no} and user_no=#{userNo}
+		]]>
+	</delete>
 </mapper>

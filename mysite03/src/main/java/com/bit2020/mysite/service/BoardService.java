@@ -34,6 +34,10 @@ public class BoardService {
 		return boardRepository.findByNo(no);
 	}
 
+	public void deleteUser(Long no, Long userNo) {
+		boardRepository.delete(no,userNo);
+	}
+
 	
 	
 	

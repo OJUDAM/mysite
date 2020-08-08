@@ -9,7 +9,8 @@
 <head>
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/board.css"
+	rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="container">
@@ -31,22 +32,31 @@
 						<th>&nbsp;</th>
 					</tr>
 					<c:forEach items="${list}" var="list">
-					<tr>
-						<td>${list.no }</td>
-						<td><a href="${pageContext.servletContext.contextPath}/board/view/${list.no}">${list.title }</a></td>
-						<td>${list.name }</td>
-						<td>${list.hit }</td>
-						<td>${list.regDate }</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
+						<tr>
+							<td>${list.no }</td>
+							<td><a
+								href="${pageContext.servletContext.contextPath}/board/view/${list.no}">${list.title }</a></td>
+							<td>${list.name }</td>
+							<td>${list.hit }</td>
+							<td>${list.regDate }</td>
+							<td><c:choose>
+									<c:when test="${authUser.no eq list.userNo}">
+										<a href="${pageContext.request.contextPath }/board/delete/${list.no}" class="del">삭제</a>
+									</c:when>
+									<c:otherwise>
+									&nbsp;
+									</c:otherwise>
+								</c:choose></td>
+						</tr>
 					</c:forEach>
-				
+
 				</table>
 				<div class="bottom">
-				<c:if test="${not empty authUser }">
-						<a href="${pageContext.request.contextPath }/board/write" id="new-book">글쓰기</a>
-				</c:if>
-				
+					<c:if test="${not empty authUser }">
+						<a href="${pageContext.request.contextPath }/board/write"
+							id="new-book">글쓰기</a>
+					</c:if>
+
 				</div>
 			</div>
 		</div>
