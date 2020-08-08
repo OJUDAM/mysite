@@ -21,5 +21,17 @@ public class BoardRepository {
 	public Map<String,Object> findContentAndTitleByNo(Long no) {
 		return sqlSession.selectOne("board.findContentAndTitleByNo",no);
 	}
+
+	public void insert(BoardVo boardVo) {
+		sqlSession.insert("board.insert", boardVo);
+	}
+
+	public void update(BoardVo boardVo) {
+		sqlSession.update("board.update", boardVo);
+	}
+
+	public BoardVo findByNo(Long no) {
+		return sqlSession.selectOne("board.findByNo", no);
+	}
 	
 }

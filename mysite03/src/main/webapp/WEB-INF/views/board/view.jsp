@@ -4,7 +4,9 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%
+	pageContext.setAttribute("newLine", "\n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +32,7 @@
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								${map.content }
+								${fn:replace(map.content, newLine,"<br>") }
 							</div>
 						</td>
 					</tr>
@@ -39,7 +41,7 @@
 					<a href="${pageContext.request.contextPath }/board">글목록</a>
 					 
 					<c:if test="${authUser.name eq map.name }">
-					 <a href="">글수정</a>
+					 <a href="${pageContext.request.contextPath }/board/modify/${map.no}">글수정</a>
 					 </c:if>
 					  
 				</div>

@@ -22,6 +22,18 @@ public class BoardService {
 		return boardRepository.findContentAndTitleByNo(no);
 	}
 
+	public void addToList(BoardVo boardVo) {
+		boardRepository.insert(boardVo);
+	}
+
+	public void modifyList(BoardVo boardVo) {
+		boardRepository.update(boardVo);
+	}
+
+	public BoardVo getUserByNo(Long no) {
+		return boardRepository.findByNo(no);
+	}
+
 	
 	
 	
