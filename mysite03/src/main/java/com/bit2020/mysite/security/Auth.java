@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 public @interface Auth {
 	
 	public enum Role{USER, ADMIN};
-	public Role role() default Role.USER;
+	Role value() default Role.USER;
 	
-	String value() default "";	
-	boolean test() default false;
+	//String value() default "";	
+	//boolean test() default false;
 }

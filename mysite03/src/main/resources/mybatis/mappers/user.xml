@@ -12,7 +12,7 @@
 
 	<select id="findByNo" parameterType="Long" resultType="uservo">
 		<![CDATA[
-		select no,name,email,gender 
+		select no,name,email,gender,role 
 		  from user 
 		where no= #{no}
 		]]>
@@ -30,7 +30,7 @@
 	<select id="findByEmailAndPassword" parameterType="uservo"
 		resultType="uservo">
 		<![CDATA[
-		select no,name 
+		select no,name,role
 		  from user 
 		where email= #{email} 
 		  and password = password(#{password})
