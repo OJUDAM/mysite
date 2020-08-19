@@ -21,8 +21,9 @@ public class GuestbookService {
 		guestbookRepository.insert(vo);
 	}
 
-	public void deleteFromList(GuestBookVo vo) {
-		guestbookRepository.delete(vo);
+	public boolean deleteFromList(GuestBookVo vo) {
+		boolean result = 1==guestbookRepository.delete(vo);
+		return result;
 	}
 
 	

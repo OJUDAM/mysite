@@ -15,8 +15,8 @@ public class GuestbookRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public boolean delete(GuestBookVo vo) {
-		return sqlSession.delete("guestbook.drop",vo) ==1 ;
+	public int delete(GuestBookVo vo) {
+		return sqlSession.delete("guestbook.drop",vo);
 	}
 
 	public boolean insert(GuestBookVo vo) {
