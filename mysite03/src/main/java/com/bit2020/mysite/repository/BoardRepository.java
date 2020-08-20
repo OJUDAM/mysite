@@ -41,5 +41,29 @@ public class BoardRepository {
 		map.put("userNo", userNo);
 		sqlSession.delete("board.delete", map);
 	}
+
+	public void updateHit(Long no) {
+		sqlSession.update("board.hitup",no);
+	}
+
+	public int getTotalCount(String keyword) {
+		return sqlSession.selectOne("board.getTotalCount", keyword);
+	}
+
+	public List<BoardVo> getList(String keyword, Integer currentPage, int listSize) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword",keyword);
+		map.put("startIndex", (currentPage-1)*listSize);
+		map.put("size",listSize);
+		
+		return sqlSession.selectList("board.getList",map);
+	}
+
+	public int updateOrderNo(Integer groupNo, Integer orderNo) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("groupNo", groupNo);
+		map.put("orderNo", orderNo);
+		return sqlSession.update("board.updateOrderNo",map);
+	}
 	
 }

@@ -33,7 +33,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="">취소</a> <input type="submit" value="등록">
+						<a href="${pageContext.request.contextPath }/board?p=${param.p}&kwd=${param.kwd}">취소</a> <input type="submit" value="등록">
 					</div>
 				</form>
 			</div>
